@@ -18,7 +18,7 @@ import (
 func setupTestRouter() *gin.Engine {
 	// Load test environment
 	config.InitDB()
-	
+
 	gin.SetMode(gin.TestMode)
 	router := gin.New()
 	router.Use(middleware.Logger())
@@ -167,13 +167,12 @@ func TestProtectedRoute_WithToken(t *testing.T) {
 	assert.Equal(t, http.StatusOK, w.Code)
 }
 
-
 func TestRoleBasedAccess(t *testing.T) {
 	router := setupTestRouter()
 
 	// Test with different roles
 	roles := []string{"Educator", "Student", "Designer"}
-	
+
 	for _, role := range roles {
 		// Register user with specific role
 		registerData := map[string]string{
